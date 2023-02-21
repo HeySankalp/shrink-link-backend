@@ -1,22 +1,25 @@
 const express = require('express');
-const  bp = require("body-parser");
-const port = 5000 || process.env.PORT;
 const Urls = require('./models/Urls');
 const connectToMongoDB = require('./dbconnection');
 const cors = require('cors');
+const dotenv = require('dotenv');
 
 
-
-
+dotenv.config();
 connectToMongoDB();
+
 const app = express();
-app.use(bp.json());
-app.use(cors({
-    origin: '*'
-}));
+const port = process.env.PORT || 8000;
+
+app.use(express.json());
+app.use(cors({ origin: '*' }));
 app.use(express.urlencoded({ extended: true }));
-app.get('/', (req, res) => {
-    res.status(200).send('Machine working fine 🙂');
+
+
+
+app.use('/', (req, res) => {
+    res.status(200).send('Machine working properly ⚡');
+
 });
 
 
@@ -60,6 +63,8 @@ app.get('/:shortlink', async (req, res) => {
             res.redirect(invalidPageLink);
         })
 });
+
+
 
 app.listen(port, () => {
     console.log("⚡server is runningon port " + port);
