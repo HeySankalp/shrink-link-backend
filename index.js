@@ -4,18 +4,17 @@ const connectToMongoDB = require('./dbconnection');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const helmet = require('helmet');
-
-
 dotenv.config();
 connectToMongoDB();
-
 const app = express();
-const port = process.env.PORT || 8000;
+
 
 app.use(express.json());
 app.use(cors({ origin: '*' }));
 app.use(express.urlencoded({ extended: true }));
 app.use(helmet());
+
+const port = process.env.PORT || 8000;
 
 
 
