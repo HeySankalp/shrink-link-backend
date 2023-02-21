@@ -56,7 +56,6 @@ app.get('/:shortlink', async (req, res) => {
         .then((url) => {
             res.redirect(url.full);
         }).catch((err) => {
-            console.log(req);
             const invalidPageLink = 'https://lrinks.web.app/invalid';
             res.redirect(invalidPageLink);
         })
