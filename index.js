@@ -18,7 +18,7 @@ const port = process.env.PORT || 8000;
 
 
 
-app.use('/', (req, res) => {
+app.get('/', (req, res) => {
     res.status(200).send('Machine working properly ⚡');
 });
 
